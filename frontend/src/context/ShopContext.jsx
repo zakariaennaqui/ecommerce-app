@@ -143,14 +143,42 @@ const ShopContextProvider = (props) => {
         }
     },[])
 
+//     useEffect(() => {
+//   const tokenFromStorage = localStorage.getItem('token');
+//   if (!token && tokenFromStorage) {
+//     setToken(tokenFromStorage);
+//     getUserCart(tokenFromStorage);
+//     fetchUserData(tokenFromStorage); // 👈 2 fetch user info
+//   }
+// }, []);
+
+
     const value = {
         products, currency, delivery_fee,
         search, setSearch, showSearch, setShowSearch, 
         cartItems, addToCart, setCartItems,
         getCartCount, updateQuantity,
         getCartAmount, navigate, backendUrl,
-        token, setToken
+        token, setToken, 
+        //user, setUser // 👈 1 add these
     }
+
+//     const fetchUserData = async (token) => { // 👈 3 add this
+//   try {
+//     const response = await axios.get(backendUrl + '/api/user/info', {
+//       headers: { token }
+//     });
+//     if (response.data.success) {
+//       setUser(response.data.user);
+//     } else {
+//       toast.error("Failed to load user info");
+//     }
+//   } catch (error) {
+//     console.error("User fetch error:", error);
+//     toast.error("Could not fetch user data");
+//   }
+// };
+     const [user, setUser] = useState(null); // 👈 0
 
     return (
         <ShopContext.Provider value={value}>
